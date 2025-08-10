@@ -1,0 +1,168 @@
+body {
+    min-height: 100vh;
+    background: linear-gradient(to right, #c4ea95, #d9fdd3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-card {
+    animation: fadeIn 1s;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+    border-radius: 18px;
+    background: rgba(255,255,255,0.95);
+    padding: 2.5rem 2rem;
+    max-width: 450px;
+    width: 100%;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(40px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+
+.login-title {
+    font-weight: 700;
+    color: #8fbc8f;
+    letter-spacing: 1px;
+}
+
+.btn-login {
+    background: linear-gradient(90deg, #c4ea95 0%, #a8d47a 100%);
+    border: none;
+    color: #fff;
+    font-weight: 600;
+}
+
+.btn-login:hover {
+    background: linear-gradient(90deg, #a8d47a 0%, #c4ea95 100%);
+}
+
+.error-msg {
+    color: #e3342f;
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+/* Fixed Form Field Container */
+.form-field-container {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+/* Fixed validation message positioning */
+.validation-msg {
+    display: block;
+    height: 1.2rem; /* Reserved space to prevent layout shift */
+    font-size: 0.875rem;
+    line-height: 1.2;
+    margin-top: 0.25rem;
+    transition: all 0.2s ease;
+}
+
+.valid {
+    color: #8fbc8f;
+}
+
+.invalid {
+    color: #e3342f;
+}
+
+/* Fixed Floating Label and Icon Positioning */
+.form-floating {
+    position: relative;
+    margin-bottom: 0; /* Remove default margin */
+}
+
+.form-floating .fa {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    color: #8fbc8f;
+    z-index: 4;
+    pointer-events: none;
+    font-size: 1.1rem;
+    width: 1em;
+    text-align: center;
+}
+
+.form-floating > .form-control {
+    padding-left: 2.75rem !important;
+    padding-right: 0.75rem !important;
+    height: 3.5rem; /* Fixed height */
+    line-height: 1.25;
+    border: 2px solid #e9ecef;
+    border-radius: 0.5rem;
+    transition: all 0.15s ease-in-out;
+}
+
+.form-floating > .form-control:focus {
+    padding-top: 1.625rem;
+    padding-bottom: 0.625rem;
+    border-color: #8fbc8f;
+    box-shadow: 0 0 0 0.2rem rgba(143, 188, 143, 0.25);
+}
+
+.form-floating > .form-control:not(:placeholder-shown) {
+    padding-top: 1.625rem;
+    padding-bottom: 0.625rem;
+}
+
+.form-floating > label {
+    position: absolute;
+    top: 0;
+    left: 2.75rem;
+    height: 100%;
+    padding: 1rem 0.75rem 1rem 0;
+    pointer-events: none;
+    border: 1px solid transparent;
+    transform-origin: 0 0;
+    transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+    z-index: 3;
+    color: #6c757d;
+}
+
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label {
+    transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+    opacity: 0.65;
+    color: #8fbc8f;
+}
+
+.form-floating > .form-control:focus {
+    outline: 0;
+}
+
+/* Smooth transitions */
+.form-floating > .form-control,
+.form-floating > label {
+    transition: all 0.2s ease-in-out;
+}
+
+/* Remember me checkbox styling */
+.form-check {
+    margin-bottom: 1.5rem;
+}
+
+.form-check-input {
+    border-color: #8fbc8f;
+}
+
+.form-check-input:checked {
+    background-color: #8fbc8f;
+    border-color: #8fbc8f;
+}
+
+.form-check-input:focus {
+    border-color: #8fbc8f;
+    box-shadow: 0 0 0 0.2rem rgba(143, 188, 143, 0.25);
+}
+
+.form-check-label {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+
