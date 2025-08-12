@@ -392,149 +392,181 @@ function getDiscountPercentage($original, $current) {
 
 
 
-    <!-- Contact Section -->
-    <section id="contact" class="section bg-white">
+
+
+
+
+    <!-- Special Offers Section -->
+    <section id="offers" class="section bg-light">
         <div class="container">
             <div class="text-center mb-5" data-aos="fade-up">
-                <div class="section-badge mb-3">
-                    <i class="fas fa-envelope me-2"></i>Get in Touch
-                </div>
-                <h2 class="section-title">Contact Us</h2>
-                <p class="section-subtitle">We'd love to hear from you! Send us your queries or feedback.</p>
+                <h2 class="section-title">Special Offers</h2>
+                <p class="section-subtitle">Explore our featured categories</p>
             </div>
             
-            <!-- Contact Form Messages -->
-            <?php if (isset($_GET['contact'])): ?>
-                <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        <?php if ($_GET['contact'] === 'success'): ?>
-                            showContactToast('Thank you! Your message has been sent successfully. We\'ll get back to you soon!', 'success');
-                        <?php elseif ($_GET['contact'] === 'error'): ?>
-                            showContactToast('<?= htmlspecialchars($_GET['message'] ?? 'Something went wrong. Please try again.') ?>', 'error');
-                        <?php endif; ?>
-                    });
-                </script>
-            <?php endif; ?>
-            
-            <div class="row justify-content-center">
-                <div class="col-lg-8" data-aos="fade-up">
-                    <div class="contact-card p-4 rounded-4 shadow-sm">
-                        <?php if (!isset($_SESSION['userId'])): ?>
-                            <div class="text-center py-5">
-                                <div class="login-required-icon mb-4">
-                                    <i class="fas fa-lock fa-3x text-muted"></i>
-                                </div>
-                                <h4 class="mb-3">Login Required</h4>
-                                <p class="text-muted mb-4">Please login to send us a message. This helps us provide better support and track your inquiries.</p>
-                                <div class="d-flex gap-3 justify-content-center">
-                                    <a href="login_form.php" class="btn btn-primary btn-lg px-4">
-                                        <i class="fas fa-sign-in-alt me-2"></i>
-                                        Login
-                                    </a>
-                                    <a href="registration_form.php" class="btn btn-outline-primary btn-lg px-4">
-                                        <i class="fas fa-user-plus me-2"></i>
-                                        Register
-                                    </a>
-                                </div>
-                            </div>
-                        <?php else: ?>
-                            <form action="contact_form.php" method="post">
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label fw-bold">Your Name</label>
-                                    <input type="text" name="name" class="form-control form-control-lg" placeholder="Enter your name" required>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label fw-bold">Your Email</label>
-                                    <input type="email" name="email" class="form-control form-control-lg" placeholder="Enter your email" required>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label fw-bold">Subject</label>
-                                <select name="subject" class="form-select form-select-lg" required>
-                                    <option value="">Select a subject</option>
-                                    <option value="General Inquiry">General Inquiry</option>
-                                    <option value="Customer Support">Customer Support</option>
-                                    <option value="Feedback">Feedback</option>
-                                    <option value="Partnership">Partnership</option>
-                                    <option value="Complaint">Complaint</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                            </div>
-                            <div class="mb-4">
-                                <label class="form-label fw-bold">Your Message</label>
-                                <textarea name="message" class="form-control form-control-lg" rows="5" placeholder="Tell us how we can help you..." required></textarea>
-                            </div>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-primary btn-lg px-5 py-3 btn-glow">
-                                    <i class="fas fa-paper-plane me-2"></i>Send Message
-                                </button>
-                            </div>
-                        </form>
-                        <?php endif; ?>
-                    </div>
+            <div class="row g-4">
+                <!-- Fruits Category -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <a href="products.php?category=fruits" class="text-decoration-none">
+                        <div class="offer-card h-100 p-4 rounded-4 bg-white shadow-sm text-center">
+                            <div class="offer-badge bg-success text-white mb-3">SPECIAL OFFER</div>
+                            <img src="https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?auto=format&fit=crop&w=300&q=80" 
+                                 alt="Fresh Fruits" 
+                                 class="img-fluid rounded-3 mb-3 offer-image">
+                            <h4 class="h5 mb-3 text-dark">Fresh Fruits</h4>
+                            <span class="btn btn-outline-success">Shop Now</span>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Vegetables Category -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <a href="products.php?category=vegetables" class="text-decoration-none">
+                        <div class="offer-card h-100 p-4 rounded-4 bg-white shadow-sm text-center">
+                            <div class="offer-badge bg-success text-white mb-3">SPECIAL OFFER</div>
+                            <img src="https://images.unsplash.com/photo-1516594798947-e65505dbb29d?auto=format&fit=crop&w=300&q=80" 
+                                 alt="Fresh Vegetables" 
+                                 class="img-fluid rounded-3 mb-3 offer-image">
+                            <h4 class="h5 mb-3 text-dark">Fresh Vegetables</h4>
+                            <span class="btn btn-outline-success">Shop Now</span>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Fresh Meat Category -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <a href="products.php?category=meat" class="text-decoration-none">
+                        <div class="offer-card h-100 p-4 rounded-4 bg-white shadow-sm text-center">
+                            <div class="offer-badge bg-success text-white mb-3">SPECIAL OFFER</div>
+                            <img src="https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=300&q=80" 
+                                 alt="Fresh Meat" 
+                                 class="img-fluid rounded-3 mb-3 offer-image">
+                            <h4 class="h5 mb-3 text-dark">Fresh Meat</h4>
+                            <span class="btn btn-outline-success">Shop Now</span>
+                        </div>
+                    </a>
                 </div>
             </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+    
+    <!-- Testimonials Section -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">What Our Customers Say</h2>
+                <p class="section-subtitle">Trusted by thousands of happy customers</p>
+            </div>
             
-            <!-- Contact Info -->
-            <div class="row mt-5 g-4">
-                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="contact-info-card text-center p-4 rounded-4 bg-light">
-                        <div class="contact-icon mb-3">
-                            <i class="fas fa-map-marker-alt fa-2x text-primary"></i>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-card p-4 rounded-4 shadow-sm h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Customer" class="rounded-circle me-3" width="60" height="60">
+                            <div>
+                                <h5 class="mb-0">Sarah A.</h5>
+                                <div class="text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
                         </div>
-                        <h5 class="fw-bold mb-2">Our Location</h5>
-                        <p class="text-muted mb-0">Manama, Bahrain<br>Central Business District</p>
+                        <p class="mb-0">"The quality of fruits and vegetables is outstanding! I've been a customer for over a year now and I'm always impressed with the freshness and delivery speed."</p>
                     </div>
                 </div>
-                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="contact-info-card text-center p-4 rounded-4 bg-light">
-                        <div class="contact-icon mb-3">
-                            <i class="fas fa-phone fa-2x text-primary"></i>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-card p-4 rounded-4 shadow-sm h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Customer" class="rounded-circle me-3" width="60" height="60">
+                            <div>
+                                <h5 class="mb-0">Ahmed K.</h5>
+                                <div class="text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
                         </div>
-                        <h5 class="fw-bold mb-2">Phone Number</h5>
-                        <p class="text-muted mb-0">+973 1234 5678<br>+973 9876 5432</p>
+                        <p class="mb-0">"The special offers are amazing! I saved 25% on my last order. The delivery was prompt and everything was packed perfectly. Highly recommended!"</p>
                     </div>
                 </div>
-                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="contact-info-card text-center p-4 rounded-4 bg-light">
-                        <div class="contact-icon mb-3">
-                            <i class="fas fa-envelope fa-2x text-primary"></i>
+                
+                <div class="col-lg-4 col-md-6 mx-auto" data-aos="fade-up" data-aos-delay="300">
+                    <div class="testimonial-card p-4 rounded-4 shadow-sm h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Customer" class="rounded-circle me-3" width="60" height="60">
+                            <div>
+                                <h5 class="mb-0">Fatima M.</h5>
+                                <div class="text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
                         </div>
-                        <h5 class="fw-bold mb-2">Email Address</h5>
-                        <p class="text-muted mb-0">support@grocerynest.com<br>info@grocerynest.com</p>
+                        <p class="mb-0">"The customer service is exceptional. I had an issue with a delivery and they resolved it immediately. The quality of products is consistently great!"</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+
+
+
+
+
+
+
+
     <!-- Footer -->
-    <footer class="footer bg-dark text-white">
+    <footer id="about" class="footer bg-dark text-white">
         <div class="container py-5">
-            <div class="row g-4">
-                <div class="col-lg-4 mb-4">
-                    <div class="footer-brand mb-3">
-                        <h3 class="fw-bold text-primary">GroceryNest</h3>
-                    </div>
-                    <p class="mb-3">Premium groceries delivered fresh to your door. Experience the future of grocery shopping with our fast, reliable, and quality service.</p>
-                    <div class="d-flex gap-3">
-                        <a href="#" class="social-icon" title="Facebook">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="social-icon" title="Twitter">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="social-icon" title="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="social-icon" title="LinkedIn">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
+            <div class="row gx-0">
+                <div class="col-lg-5 mb-4 mb-lg-0 pe-5">
+                    <div class="about-content">
+                        <h2 class="section-title text-white mb-4">About GroceryNest</h2>
+                        <p class="lead mb-4">Your trusted online grocery store delivering fresh and high-quality products directly to your doorstep.</p>
+                        <p class="mb-4">At GroceryNest, we believe in providing the freshest produce, highest quality meats, and pantry staples at competitive prices. Our mission is to make grocery shopping convenient, fast, and enjoyable.</p>
+                        <div class="d-flex flex-wrap gap-3">
+                            <div class="d-flex align-items-center me-4">
+                                <div class="me-3">
+                                    <i class="fas fa-truck fa-2x text-success"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">Fast Delivery</h5>
+                                    <small class="text-muted">30 min delivery</small>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="me-3">
+                                    <i class="fas fa-leaf fa-2x text-success"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">Fresh Products</h5>
+                                    <small class="text-muted">Farm to table</small>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="col-lg-2 col-md-6">
+                <div class="col-auto px-5">
                     <h5 class="fw-bold mb-3">Quick Links</h5>
                     <ul class="list-unstyled">
                         <li class="mb-2"><a href="#home" class="footer-link">Home</a></li>
@@ -545,7 +577,7 @@ function getDiscountPercentage($original, $current) {
                     </ul>
                 </div>
                 
-                <div class="col-lg-2 col-md-6">
+                <div class="col-auto px-5">
                     <h5 class="fw-bold mb-3">Categories</h5>
                     <ul class="list-unstyled">
                         <li class="mb-2"><a href="products.php?category=produce" class="footer-link">Fruits & Vegetables</a></li>
@@ -556,39 +588,30 @@ function getDiscountPercentage($original, $current) {
                     </ul>
                 </div>
                 
-                <div class="col-lg-4">
-                    <h5 class="fw-bold mb-3">Contact Information</h5>
-                    <div class="contact-item mb-3">
-                        <i class="fas fa-map-marker-alt me-2 text-primary"></i>
-                        <span>Manama, Bahrain - Central Business District</span>
-                    </div>
-                    <div class="contact-item mb-3">
-                        <i class="fas fa-phone me-2 text-primary"></i>
-                        <span>+973 1234 5678</span>
-                    </div>
-                    <div class="contact-item mb-3">
-                        <i class="fas fa-envelope me-2 text-primary"></i>
-                        <span>support@grocerynest.com</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-clock me-2 text-primary"></i>
-                        <span>24/7 Customer Support</span>
-                    </div>
+                <div class="col-auto ps-5">
+                    <h5 class="fw-bold mb-3">Help & Support</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="<?php echo isset($_SESSION['activeUser']) ? 'contact.php' : 'login_form.php'; ?>" class="footer-link">Contact Us</a></li>
+                        <li class="mb-2"><a href="<?php echo isset($_SESSION['activeUser']) ? 'contact.php#email' : 'login_form.php'; ?>" class="footer-link">Email Support</a></li>
+                        <li class="mb-2"><a href="<?php echo isset($_SESSION['activeUser']) ? 'contact.php#faq' : 'login_form.php'; ?>" class="footer-link">FAQs</a></li>
+                        <li class="mb-2"><a href="<?php echo isset($_SESSION['activeUser']) ? 'contact.php#shipping' : 'login_form.php'; ?>" class="footer-link">Shipping Info</a></li>
+                        <li class="mb-2"><a href="<?php echo isset($_SESSION['activeUser']) ? 'contact.php#returns' : 'login_form.php'; ?>" class="footer-link">Returns & Refunds</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
         
-        <div class="footer-bottom py-3 border-top border-secondary">
+        <div class="footer-bottom py-3 border-top border-secondary text-white">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-6">
-                        <p class="mb-0 text-muted">&copy; 2025 GroceryNest. All rights reserved.</p>
+                        <p class="mb-0">&copy; 2025 GroceryNest. All rights reserved.</p>
                     </div>
                     <div class="col-md-6 text-md-end">
                         <div class="footer-links">
-                            <a href="#" class="text-muted me-3">Privacy Policy</a>
-                            <a href="#" class="text-muted me-3">Terms of Service</a>
-                            <a href="#" class="text-muted">Cookie Policy</a>
+                            <a href="#" class="text-white me-3">Privacy Policy</a>
+                            <a href="#" class="text-white me-3">Terms of Service</a>
+                            <a href="#" class="text-white">Cookie Policy</a>
                         </div>
                     </div>
                 </div>

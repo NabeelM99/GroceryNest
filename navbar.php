@@ -42,10 +42,13 @@
                     <a class="nav-link" href="#features">Features</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#contact">Contact</a>
+                    <a class="nav-link" href="#offers">Offers</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="about.php">About</a>
+                    <a class="nav-link" href="contact.php">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">About</a>
                 </li>
             </ul>
             

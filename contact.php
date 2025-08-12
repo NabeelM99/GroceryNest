@@ -108,18 +108,18 @@ unset($_SESSION['form_errors'], $_SESSION['old_input']);
         .contact-header {
             background: var(--gradient-primary);
             border-radius: 12px; 
-            padding: 1.5rem 1.5rem;
-            margin-bottom: 1.5rem; 
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 0.5rem; 
             color: white;
             box-shadow: var(--shadow-large);
-            min-height: 100px;
+            min-height: 90px;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
         .row.g-4 {
-            margin-top: 0 !important;
+            margin-top: 0.5rem !important;
         }
 
         .alert {
@@ -320,7 +320,7 @@ unset($_SESSION['form_errors'], $_SESSION['old_input']);
                             </div>
                             <div>
                                 <h6 class="mb-1">Phone</h6>
-                                <p class="mb-0 text-muted">+1 (555) 123-4567</p>
+                                <p class="mb-0 text-muted">+973-33234554</p>
                             </div>
                         </div>
 
@@ -330,7 +330,7 @@ unset($_SESSION['form_errors'], $_SESSION['old_input']);
                             </div>
                             <div>
                                 <h6 class="mb-1">Email</h6>
-                                <p class="mb-0 text-muted">support@freshcart.com</p>
+                                <p class="mb-0 text-muted">support@freshnest.com</p>
                             </div>
                         </div>
 
@@ -340,7 +340,7 @@ unset($_SESSION['form_errors'], $_SESSION['old_input']);
                             </div>
                             <div>
                                 <h6 class="mb-1">Address</h6>
-                                <p class="mb-0 text-muted">123 Grocery Street<br>Fresh City, FC 12345</p>
+                                <p class="mb-0 text-muted">Road No.: 2045<br>Block No.: 123<br>Manama Souq, Bahrain</p>
                             </div>
                         </div>
                     </div>

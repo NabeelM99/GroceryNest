@@ -191,7 +191,7 @@ body {
 }
 
 /* Cart-style quantity controls for product cards */
-.quantity-controls {
+.product-bottom-actions .quantity-controls {
     display: flex;
     align-items: center;
     border: 1px solid #e5e7eb;
@@ -203,7 +203,7 @@ body {
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.product-card:hover .quantity-controls {
+.product-card:hover .product-bottom-actions .quantity-controls {
     opacity: 1;
     transform: translateY(0);
 }

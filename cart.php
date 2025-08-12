@@ -236,7 +236,7 @@ $user_info = $stmt->fetch(PDO::FETCH_ASSOC);
     
     <link rel="stylesheet" href="css/cart.css">
     <link rel="stylesheet" href="css/navbar.css">
-    <link rel="stylesheet" href="css/products.css">
+    
 </head>
 <body>
     <!-- Navbar -->

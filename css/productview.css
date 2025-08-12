@@ -146,10 +146,10 @@
 }
 
 .current-price {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 700;
-    color: #e74c3c;
-    margin-bottom: 5px;
+    color: var(--primary-green, #10b981); /* Using website's primary green */
+    margin-right: 10px;
 }
 
 .original-price {
@@ -177,7 +177,7 @@
     margin-bottom: 8px;
 }
 
-.quantity-controls {
+.purchase-section .quantity-controls {
     display: flex;
     align-items: center;
     gap: 0;
@@ -185,24 +185,65 @@
     border: 1px solid #ddd;
     border-radius: 6px;
     overflow: hidden;
+    height: 44px; /* Fixed height for better alignment */
 }
 
-.quantity-btn {
+.purchase-section .quantity-btn {
     background: #f8f9fa;
     border: none;
-    padding: 10px 15px;
+    width: 44px; /* Fixed width for square buttons */
+    height: 100%; /* Full height of container */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 1.2rem;
     font-weight: 600;
     color: #495057;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.2s ease;
+    user-select: none; /* Prevent text selection */
 }
 
-.quantity-btn:hover {
+.purchase-section .quantity-btn:hover {
     background: #e9ecef;
 }
 
+.purchase-section .quantity-btn:active {
+    background: #dee2e6;
+    transform: scale(0.95);
+}
+
+/* Quantity input styling */
 .quantity-input {
+    width: 50px;
+    text-align: center;
+    border: none;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    height: 100%;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #2c3e50;
+    -moz-appearance: textfield; /* Hide number input arrows in Firefox */
+}
+
+/* Hide number input arrows in Chrome, Safari, Edge, Opera */
+.quantity-input::-webkit-outer-spin-button,
+.quantity-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.purchase-section .quantity-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+}
+
+.purchase-section .quantity-btn:hover {
+    background: #e9ecef;
+}
+
+.purchase-section .quantity-input {
     border: none;
     padding: 10px 15px;
     width: 80px;
@@ -211,18 +252,18 @@
     background: white;
 }
 
-.quantity-input:focus {
+.purchase-section .quantity-input:focus {
     outline: none;
     box-shadow: none;
 }
 
-.action-buttons {
+.purchase-section .action-buttons {
     display: flex;
     gap: 10px;
     margin-top: 20px;
 }
 
-.add-to-cart-main {
+.purchase-section .add-to-cart-main {
     flex: 1;
     padding: 12px 24px;
     font-weight: 600;
@@ -232,12 +273,12 @@
     transition: all 0.3s ease;
 }
 
-.add-to-cart-main:hover {
+.purchase-section .add-to-cart-main:hover {
     background: #059669;
     transform: translateY(-2px);
 }
 
-.add-to-cart-main:disabled {
+.purchase-section .add-to-cart-main:disabled {
     background: #6c757d;
     cursor: not-allowed;
     transform: none;

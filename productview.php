@@ -62,7 +62,7 @@ function getDiscountPercentage($original, $current) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/products.css">
+    
     <link rel="stylesheet" href="css/productview.css">
 </head>
 <body>
@@ -141,14 +141,17 @@ function getDiscountPercentage($original, $current) {
 
                     <!-- Quantity and Add to Cart -->
                     <div class="purchase-section mb-4">
-                        <div class="quantity-selector mb-3">
-                            <label class="form-label">Quantity:</label>
-                            <div class="quantity-controls">
-                                <button type="button" class="quantity-btn" id="decreaseQty">-</button>
-                                <input type="number" class="quantity-input" id="productQuantity" value="1" min="1" max="10">
-                                <button type="button" class="quantity-btn" id="increaseQty">+</button>
-                            </div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn decrease-qty" data-item-id="<?= $product['id'] ?>" type="button" disabled>
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <input type="number" class="quantity-input" data-item-id="<?= $product['id'] ?>" value="1" min="1" max="99" readonly>
+                            <button class="quantity-btn increase-qty" data-item-id="<?= $product['id'] ?>" type="button">
+                                <i class="fas fa-plus"></i>
+                            </button>
                         </div>
+                        
+                        
 
                         <div class="action-buttons">
                             <button class="btn btn-primary add-to-cart-main" 

@@ -146,10 +146,10 @@ body {
 .quantity-controls {
     display: flex !important;
     align-items: center;
-    border: 2px solid red !important;
+    border: 1px solid #e5e7eb;
     border-radius: 8px;
     overflow: hidden;
-    background: yellow !important;
+    background: white !important;
     min-height: 35px;
     width: 100%;
     max-width: 120px;
@@ -159,14 +159,14 @@ body {
 }
 
 .quantity-btn {
-    background: red !important;
-    border: 2px solid blue !important;
+    background: #f8fafc;
+    border: none;
     width: 35px;
     height: 35px;
     display: flex !important;
     align-items: center;
     justify-content: center;
-    color: white !important;
+    color: #6b7280;
     transition: background 0.15s ease;
     cursor: pointer;
     font-size: 16px;
