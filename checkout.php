@@ -145,9 +145,9 @@ $tax_rate = 0.10; // 10%
 $tax_amount = $subtotal * $tax_rate;
 $total_with_tax = $subtotal + $tax_amount;
 
-// Get user info
+// Get user info - FIXED QUERY TO INCLUDE EMAIL
 $stmt = $conn->prepare("
-    SELECT u.Username, c.Fname, c.Lname, c.Mobile, c.Building, c.Block
+    SELECT u.Username, u.Email, c.Fname, c.Lname, c.Mobile, c.Building, c.Block
     FROM user u 
     LEFT JOIN customer c ON u.id = c.UID 
     WHERE u.id = ?
@@ -191,6 +191,21 @@ if ($userInfo['Building'] && $userInfo['Block']) {
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/checkout.css">
+    
+    <style>
+        /* Additional styling for readonly email field */
+        .form-control[readonly] {
+            background-color: #f8f9fa;
+            border-color: #dee2e6;
+            color: #6c757d;
+        }
+        
+        .readonly-indicator {
+            font-size: 0.75rem;
+            color: #6c757d;
+            margin-top: 0.25rem;
+        }
+    </style>
 </head>
 
 <body>
@@ -262,9 +277,12 @@ if ($userInfo['Building'] && $userInfo['Block']) {
                                                    value="<?= htmlspecialchars($profileInfo['Mobile'] ?? $userInfo['Mobile'] ?? '') ?>" required>
                                         </div>
                                         <div class="col-md-6 mb-3">
-                                            <label for="email" class="form-label">Email</label>
+                                            <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
                                             <input type="email" class="form-control" id="email" name="email" 
-                                                   value="<?= htmlspecialchars($userInfo['Username'] ?? '') ?>" readonly>
+                                                   value="<?= htmlspecialchars($userInfo['Email'] ?? '') ?>" readonly required>
+                                            <div class="readonly-indicator">
+                                                <i class="fas fa-lock me-1"></i>Using your account email
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="mb-3">
@@ -309,8 +327,6 @@ if ($userInfo['Building'] && $userInfo['Block']) {
                                     </div>
                                 </div>
                             </div>
-
-
 
                         </div>
                     </div>
@@ -418,8 +434,6 @@ if ($userInfo['Building'] && $userInfo['Block']) {
         </div>
     </div>
 
-
-
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
@@ -438,4 +452,4 @@ if ($userInfo['Building'] && $userInfo['Block']) {
         });
     </script>
 </body>
-</html> 
+</html>

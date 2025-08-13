@@ -1124,7 +1124,7 @@ try {
                                                 onclick="viewOrderDetails(<?= $order['id'] ?>)">
                                             <i class="fas fa-eye"></i>
                                         </button>
-                                        <button class="btn btn-sm btn-outline-success" 
+                                        <button class="btn btn-sm btn-outline-warning" 
                                                 onclick="updateOrderStatus(<?= $order['id'] ?>, 'processing')"
                                                 <?= $order['status'] !== 'pending' ? 'disabled' : '' ?>>
                                             <i class="fas fa-check"></i>
@@ -1562,8 +1562,8 @@ try {
             };
 
             const statusColors = {
-                'processing': 'info',
-                'shipped': 'primary',
+                'processing': 'warning',
+                'shipped': 'info',
                 'delivered': 'success',
                 'cancelled': 'danger'
             };

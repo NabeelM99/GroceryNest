@@ -315,6 +315,9 @@ unset($_SESSION['form_errors'], $_SESSION['old_input']);
                                     <label for="email" class="form-label">Email Address <span class="text-danger">*</span></label>
                                     <input type="email" class="form-control" id="email" name="email" 
                                            value="<?= htmlspecialchars($userEmail) ?>" readonly required>
+                                    <div class="readonly-indicator">
+                                        <i class="fas fa-lock me-1"></i>Using your account email
+                                    </div>
                                 </div>
 
                                 <div class="col-12">
