@@ -29,12 +29,58 @@ document.addEventListener('click', function(e) {
 // Remove item
 document.addEventListener('click', function(e) {
     if (e.target.closest('.remove-item')) {
+        e.preventDefault();
         const btn = e.target.closest('.remove-item');
         const itemId = btn.dataset.itemId;
+        const productName = btn.getAttribute('data-product-name') || 'this item';
         
-        if (confirm('Are you sure you want to remove this item from your cart?')) {
+        // Create confirmation modal
+        const confirmModal = document.createElement('div');
+        confirmModal.className = 'modal fade';
+        confirmModal.innerHTML = `
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            <i class="fas fa-trash-alt me-2 text-danger"></i>
+                            Remove Item
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <div class="mb-3">
+                            <i class="fas fa-exclamation-triangle fa-3x text-warning"></i>
+                        </div>
+                        <h5>Remove ${productName}?</h5>
+                        <p class="text-muted">Are you sure you want to remove this item from your cart?</p>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            <i class="fas fa-times me-2"></i>Cancel
+                        </button>
+                        <button type="button" class="btn btn-danger confirm-remove" data-item-id="${itemId}">
+                            <i class="fas fa-trash-alt me-2"></i>Remove
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        // Add to DOM and show
+        document.body.appendChild(confirmModal);
+        const modal = new bootstrap.Modal(confirmModal);
+        modal.show();
+        
+        // Handle confirm button click
+        confirmModal.querySelector('.confirm-remove').addEventListener('click', function() {
+            modal.hide();
             removeItem(itemId);
-        }
+        });
+        
+        // Clean up on modal close
+        confirmModal.addEventListener('hidden.bs.modal', function () {
+            confirmModal.remove();
+        });
     }
 });
 

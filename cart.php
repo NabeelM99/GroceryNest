@@ -313,7 +313,9 @@ $user_info = $stmt->fetch(PDO::FETCH_ASSOC);
                                         <small class="text-muted">BHD <?= number_format($item['price'], 2) ?> each</small>
                                     </div>
                                     <div class="col-md-2 text-center">
-                                        <button class="btn remove-btn btn-sm remove-item" data-item-id="<?= $item['cart_item_id'] ?>">
+                                        <button class="btn remove-btn btn-sm remove-item" 
+                                                data-item-id="<?= $item['cart_item_id'] ?>"
+                                                data-product-name="<?= htmlspecialchars($item['name']) ?>">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </div>
