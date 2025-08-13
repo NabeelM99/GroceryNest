@@ -572,19 +572,21 @@ function getDiscountPercentage($original, $current) {
                         <li class="mb-2"><a href="#home" class="footer-link">Home</a></li>
                         <li class="mb-2"><a href="products.php" class="footer-link">Products</a></li>
                         <li class="mb-2"><a href="#features" class="footer-link">Features</a></li>
-                        <li class="mb-2"><a href="#contact" class="footer-link">Contact</a></li>
                         <li class="mb-2"><a href="about.php" class="footer-link">About Us</a></li>
+                        <li class="mb-2"><a href="#contact" class="footer-link">Contact Us</a></li>
                     </ul>
                 </div>
                 
                 <div class="col-auto px-5">
                     <h5 class="fw-bold mb-3">Categories</h5>
                     <ul class="list-unstyled">
-                        <li class="mb-2"><a href="products.php?category=produce" class="footer-link">Fruits & Vegetables</a></li>
-                        <li class="mb-2"><a href="products.php?category=dairy" class="footer-link">Dairy & Bread</a></li>
-                        <li class="mb-2"><a href="products.php?category=meat" class="footer-link">Meat & Fish</a></li>
-                        <li class="mb-2"><a href="products.php?category=beverages" class="footer-link">Beverages</a></li>
-                        <li class="mb-2"><a href="products.php?category=snacks" class="footer-link">Snacks</a></li>
+                        <li class="mb-2"><a href="products.php?category=Fruits" class="footer-link">Fruits</a></li>
+                        <li class="mb-2"><a href="products.php?category=Vegetables" class="footer-link">Vegetables</a></li>
+                        <li class="mb-2"><a href="products.php?category=Dairy" class="footer-link">Dairy</a></li>
+                        <li class="mb-2"><a href="products.php?category=Meat" class="footer-link">Meat</a></li>
+                        <li class="mb-2"><a href="products.php?category=Beverages" class="footer-link">Beverages</a></li>
+                        <li class="mb-2"><a href="products.php?category=Snacks" class="footer-link">Snacks</a></li>
+                        <a href="products.php" class="mb-2">View all</a>
                     </ul>
                 </div>
                 
@@ -593,8 +595,6 @@ function getDiscountPercentage($original, $current) {
                     <ul class="list-unstyled">
                         <li class="mb-2"><a href="<?php echo isset($_SESSION['activeUser']) ? 'contact.php' : 'login_form.php'; ?>" class="footer-link">Contact Us</a></li>
                         <li class="mb-2"><a href="<?php echo isset($_SESSION['activeUser']) ? 'contact.php#email' : 'login_form.php'; ?>" class="footer-link">Email Support</a></li>
-                        <li class="mb-2"><a href="<?php echo isset($_SESSION['activeUser']) ? 'contact.php#faq' : 'login_form.php'; ?>" class="footer-link">FAQs</a></li>
-                        <li class="mb-2"><a href="<?php echo isset($_SESSION['activeUser']) ? 'contact.php#shipping' : 'login_form.php'; ?>" class="footer-link">Shipping Info</a></li>
                         <li class="mb-2"><a href="<?php echo isset($_SESSION['activeUser']) ? 'contact.php#returns' : 'login_form.php'; ?>" class="footer-link">Returns & Refunds</a></li>
                     </ul>
                 </div>

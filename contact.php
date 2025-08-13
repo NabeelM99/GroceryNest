@@ -8,6 +8,30 @@ if (!isset($_SESSION['userId'])) {
     exit;
 }
 
+// Fetch current user data to get email and name
+$stmt = $conn->prepare("SELECT u.Username, u.Email, u.Type, c.Fname, c.Lname 
+                        FROM user u 
+                        LEFT JOIN customer c ON u.id = c.UID 
+                        WHERE u.id = ?");
+$stmt->execute([$_SESSION['userId']]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$user) {
+    session_destroy();
+    header("Location: login_form.php");
+    exit;
+}
+
+// Pre-fill name field - combine first and last name if available, otherwise use username
+$userFullName = '';
+if (!empty($user['Fname']) && !empty($user['Lname'])) {
+    $userFullName = $user['Fname'] . ' ' . $user['Lname'];
+} else {
+    $userFullName = $user['Username'];
+}
+
+$userEmail = $user['Email'];
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         // Get form data
@@ -192,6 +216,19 @@ unset($_SESSION['form_errors'], $_SESSION['old_input']);
             border-color: #c4ea95;
         }
         
+        /* Style for readonly email field */
+        .form-control[readonly] {
+            background-color: #f8f9fa;
+            border-color: #dee2e6;
+            color: #6c757d;
+        }
+        
+        .readonly-indicator {
+            font-size: 0.75rem;
+            color: #6c757d;
+            margin-top: 0.25rem;
+        }
+        
         textarea.form-control {
             min-height: 120px;
             resize: vertical;
@@ -270,12 +307,14 @@ unset($_SESSION['form_errors'], $_SESSION['old_input']);
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <label for="name" class="form-label">Full Name <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="name" name="name" required>
+                                    <input type="text" class="form-control" id="name" name="name" 
+                                           value="<?= htmlspecialchars($userFullName) ?>" required>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label for="email" class="form-label">Email Address <span class="text-danger">*</span></label>
-                                    <input type="email" class="form-control" id="email" name="email" required>
+                                    <input type="email" class="form-control" id="email" name="email" 
+                                           value="<?= htmlspecialchars($userEmail) ?>" readonly required>
                                 </div>
 
                                 <div class="col-12">

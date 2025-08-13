@@ -185,14 +185,14 @@
     border: 1px solid #ddd;
     border-radius: 6px;
     overflow: hidden;
-    height: 44px; /* Fixed height for better alignment */
+    height: 44px; 
 }
 
 .purchase-section .quantity-btn {
     background: #f8f9fa;
     border: none;
-    width: 44px; /* Fixed width for square buttons */
-    height: 100%; /* Full height of container */
+    width: 44px; 
+    height: 100%; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -201,7 +201,7 @@
     color: #495057;
     cursor: pointer;
     transition: all 0.2s ease;
-    user-select: none; /* Prevent text selection */
+    user-select: none; 
 }
 
 .purchase-section .quantity-btn:hover {
@@ -224,10 +224,9 @@
     font-size: 1rem;
     font-weight: 600;
     color: #2c3e50;
-    -moz-appearance: textfield; /* Hide number input arrows in Firefox */
+    -moz-appearance: textfield;     
 }
 
-/* Hide number input arrows in Chrome, Safari, Edge, Opera */
 .quantity-input::-webkit-outer-spin-button,
 .quantity-input::-webkit-inner-spin-button {
     -webkit-appearance: none;

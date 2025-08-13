@@ -6,46 +6,93 @@ document.addEventListener('DOMContentLoaded', function() {
         once: true
     });
 
-    // Quantity controls
-    const decreaseBtn = document.getElementById('decreaseQty');
-    const increaseBtn = document.getElementById('increaseQty');
-    const quantityInput = document.getElementById('productQuantity');
-
-    if (decreaseBtn && increaseBtn && quantityInput) {
-        decreaseBtn.addEventListener('click', function() {
-            let currentValue = parseInt(quantityInput.value);
-            if (currentValue > 1) {
-                quantityInput.value = currentValue - 1;
+    // Quantity controls - Updated to match your HTML structure
+    document.addEventListener('click', function(e) {
+        // Handle decrease quantity
+        if (e.target.closest('.decrease-qty')) {
+            const btn = e.target.closest('.decrease-qty');
+            const itemId = btn.dataset.itemId;
+            const input = document.querySelector(`input[data-item-id="${itemId}"]`);
+            
+            if (input) {
+                const currentValue = parseInt(input.value);
+                const minValue = parseInt(input.getAttribute('min')) || 1;
+                
+                if (currentValue > minValue) {
+                    input.value = currentValue - 1;
+                    updateQuantityButtons(itemId, currentValue - 1);
+                }
             }
-        });
-
-        increaseBtn.addEventListener('click', function() {
-            let currentValue = parseInt(quantityInput.value);
-            let maxValue = parseInt(quantityInput.getAttribute('max')) || 10;
-            if (currentValue < maxValue) {
-                quantityInput.value = currentValue + 1;
+        }
+        
+        // Handle increase quantity
+        if (e.target.closest('.increase-qty')) {
+            const btn = e.target.closest('.increase-qty');
+            const itemId = btn.dataset.itemId;
+            const input = document.querySelector(`input[data-item-id="${itemId}"]`);
+            
+            if (input) {
+                const currentValue = parseInt(input.value);
+                const maxValue = parseInt(input.getAttribute('max')) || 99;
+                
+                if (currentValue < maxValue) {
+                    input.value = currentValue + 1;
+                    updateQuantityButtons(itemId, currentValue + 1);
+                }
             }
-        });
+        }
+    });
 
-        // Validate quantity input
-        quantityInput.addEventListener('input', function() {
-            let value = parseInt(this.value);
-            let min = parseInt(this.getAttribute('min')) || 1;
-            let max = parseInt(this.getAttribute('max')) || 10;
+    // Function to update quantity button states
+    function updateQuantityButtons(itemId, quantity) {
+        const decreaseBtn = document.querySelector(`.decrease-qty[data-item-id="${itemId}"]`);
+        const increaseBtn = document.querySelector(`.increase-qty[data-item-id="${itemId}"]`);
+        const input = document.querySelector(`input[data-item-id="${itemId}"]`);
+        
+        if (decreaseBtn && input) {
+            const minValue = parseInt(input.getAttribute('min')) || 1;
+            decreaseBtn.disabled = quantity <= minValue;
+        }
+        
+        if (increaseBtn && input) {
+            const maxValue = parseInt(input.getAttribute('max')) || 99;
+            increaseBtn.disabled = quantity >= maxValue;
+        }
+    }
+
+    // Validate quantity input on manual input
+    document.addEventListener('input', function(e) {
+        if (e.target.classList.contains('quantity-input')) {
+            const input = e.target;
+            const value = parseInt(input.value);
+            const min = parseInt(input.getAttribute('min')) || 1;
+            const max = parseInt(input.getAttribute('max')) || 99;
+            const itemId = input.dataset.itemId;
             
             if (isNaN(value) || value < min) {
-                this.value = min;
+                input.value = min;
             } else if (value > max) {
-                this.value = max;
+                input.value = max;
             }
-        });
-    }
+            
+            updateQuantityButtons(itemId, parseInt(input.value));
+        }
+    });
+
+    // Initialize quantity buttons state
+    const quantityInputs = document.querySelectorAll('.quantity-input');
+    quantityInputs.forEach(input => {
+        const itemId = input.dataset.itemId;
+        const currentValue = parseInt(input.value);
+        updateQuantityButtons(itemId, currentValue);
+    });
 
     // Add to cart functionality with login check
     const addToCartBtn = document.querySelector('.add-to-cart-main');
     if (addToCartBtn) {
         addToCartBtn.addEventListener('click', function() {
             const productId = this.getAttribute('data-product-id');
+            const quantityInput = document.querySelector(`.quantity-input[data-item-id="${productId}"]`);
             const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
             
             // Add visual feedback
@@ -408,6 +455,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     transform: translateX(100%);
                     opacity: 0;
                 }
+            }
+            
+            .quantity-btn:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
             }
         `;
         document.head.appendChild(style);
