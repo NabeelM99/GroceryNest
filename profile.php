@@ -298,22 +298,17 @@ $orderCount = $stmt->fetchColumn();
         </div>
         <div class="card-body">
             <div class="row g-3">
-                <div class="col-md-6 col-lg-3">
+                <div class="col-md-4">
                     <a href="editprofile.php" class="btn btn-outline-primary w-100 btn-action">
                         <i class="fas fa-user-edit me-2"></i>Edit Profile
                     </a>
                 </div>
-                <div class="col-md-6 col-lg-3">
-                    <a href="#" class="btn btn-outline-secondary w-100 btn-action" disabled>
-                        <i class="fas fa-key me-2"></i>Change Password
-                    </a>
-                </div>
-                <div class="col-md-6 col-lg-3">
+                <div class="col-md-4">
                     <a href="orders.php" class="btn btn-outline-success w-100 btn-action">
                         <i class="fas fa-history me-2"></i>Order History
                     </a>
                 </div>
-                <div class="col-md-6 col-lg-3">
+                <div class="col-md-4">
                     <form method="post" action="signout.php" class="d-inline w-100">
                         <button type="submit" class="btn btn-outline-danger w-100 btn-action">
                             <i class="fas fa-sign-out-alt me-2"></i>Sign Out

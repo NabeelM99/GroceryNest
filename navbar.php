@@ -39,13 +39,13 @@
                     <a class="nav-link" href="products.php">Products</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#features">Features</a>
+                    <a class="nav-link" href="index.php#features">Features</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#offers">Offers</a>
+                    <a class="nav-link" href="index.php#offers">Offers</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#about">About</a>
+                    <a class="nav-link" href="index.php#about">About</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="contact.php">Contact</a>
@@ -79,10 +79,10 @@
                             0
                         </span>
                     </a>
-                    <a href="orders.php" class="btn btn-outline-info position-relative">
-                        <i class="fas fa-shopping-bag"></i>
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
-                            <i class="fas fa-receipt"></i>
+                    <a href="cart.php" class="btn btn-primary position-relative">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cartCount">
+                            0
                         </span>
                     </a>
                     <?php if (isset($_SESSION['activeUser'])): ?>
@@ -99,12 +99,7 @@
                             <i class="fas fa-sign-in-alt"></i>
                         </a>
                     <?php endif; ?>
-                    <a href="cart.php" class="btn btn-primary position-relative">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cartCount">
-                            0
-                        </span>
-                    </a>
+                    
                 <?php endif; ?>
             </div>
         </div>

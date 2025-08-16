@@ -641,6 +641,49 @@ function getDiscountPercentage($original, $current) {
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Smooth Scrolling for Anchor Links -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Check if URL has a hash
+        if (window.location.hash) {
+            const targetId = window.location.hash;
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                // Small delay to ensure the page has fully loaded
+                setTimeout(() => {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80, // Adjust for fixed navbar
+                        behavior: 'smooth'
+                    });
+                }, 100);
+            }
+        }
+
+        // Add smooth scrolling for all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = href;
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80, // Adjust for fixed navbar
+                            behavior: 'smooth'
+                        });
+                        
+                        // Update URL without adding to history
+                        history.pushState(null, null, targetId);
+                    }
+                }
+            });
+        });
+    });
+    </script>
     <script src="js/index.js"></script>
     <script src="js/products.js"></script>
 

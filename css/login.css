@@ -210,6 +210,8 @@ body {
     .navbar .container {
         padding-left: 1rem;
         padding-right: 1rem;
+        background-color: #ffffff;
+        color: #ffffff;
     }
     
     .navbar-nav.me-auto {
@@ -221,11 +223,6 @@ body {
         margin-top: 1rem;
     }
 }
-
-
-
-
-
 
 
 [data-aos^=fade][data-aos^=fade] {
