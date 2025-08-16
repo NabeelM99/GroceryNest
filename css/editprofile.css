@@ -1,0 +1,168 @@
+* {
+    box-sizing: border-box;
+}
+
+.profile-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.profile-pic-container {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 15px;
+}
+
+.profile-pic-preview {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #10b981;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.profile-pic-placeholder {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(to right, #c4ea95, #d9fdd3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: white;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.pic-upload-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: #10b981;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease;
+}
+
+.pic-upload-btn:hover {
+    background: #c4ea95;
+}
+
+.form-card {
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    overflow: hidden;
+    /* Prevent any movement or animation */
+    transform: none !important;
+    transition: none !important;
+}
+
+/* Remove any Bootstrap card hover effects */
+.form-card:hover {
+    transform: none !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08) !important;
+}
+
+.form-header {
+    background: linear-gradient(to right, #c4ea95, #d9fdd3);
+    color:rgb(81, 145, 81);
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.mb-0{
+    font-weight: bold;
+}
+
+.form-body {
+    padding: 1.5rem;
+}
+
+.form-control {
+    border-radius: 8px;
+    border: 2px solid #e5e7eb;
+    padding: 10px 14px;
+    /* Only transition specific properties to prevent movement */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
+}
+
+.form-control:focus {
+    border-color: #10b981;
+    box-shadow: 0 0 0 0.2rem rgba(16, 185, 129, 0.25);
+    outline: none;
+}
+
+.form-control:hover {
+    border-color: #10b981;
+    /* No box-shadow changes on hover to prevent visual movement */
+}
+
+.btn-save {
+    background: linear-gradient(to right, #c4ea95, #d9fdd3);
+    border: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    color: #10b981;
+    transition: background-color 0.3s ease;
+}
+
+.btn-save:hover {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+}
+
+.btn-cancel {
+    background: #6b7280;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.btn-cancel:hover {
+    background: #4b5563;
+}
+
+#profilePicInput {
+    display: none;
+}
+
+.alert {
+    border-radius: 8px;
+    border: none;
+}
+
+.compact-section {
+    margin-bottom: 1rem;
+}
+
+.form-label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+/* Prevent any card animations */
+.card {
+    transform: none !important;
+    transition: none !important;
+}
+
+@media (max-width: 768px) {
+    .form-body {
+        padding: 1rem;
+    }
+}
