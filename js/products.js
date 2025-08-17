@@ -426,13 +426,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const isMobile = window.innerWidth < 768;
     AOS.init({
         once: true, // Only animate once to improve performance
-        duration: 400,
+        duration: 800,
         offset: 100,
         delay: 0,
         easing: 'ease-out',
         disable: isMobile ? true : false // Disable on mobile for better performance
     });
-    
+
     // Initial event listeners for existing content
     attachEventListeners();
     

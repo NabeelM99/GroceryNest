@@ -100,7 +100,7 @@ function getDiscountPercentage($original, $current) {
                                 <div class="carousel-badge">🔥 30% OFF</div>
                             </div>
                             <div class="carousel-slide">
-                                <img src="https://images.unsplash.com/photo-1566385101042-1a0aa0c1268c?auto=format&fit=crop&w=800&q=80" alt="Fresh vegetables">
+                                <img src="https://images.unsplash.com/photo-1576398289164-c48dc021b4e1?auto=format&fit=crop&w=800&q=80" alt="Fresh vegetables">
                                 <div class="carousel-overlay"></div>
                                 <div class="carousel-badge">🥕 Fresh Daily</div>
                             </div>
@@ -119,6 +119,16 @@ function getDiscountPercentage($original, $current) {
                                 <div class="carousel-overlay"></div>
                                 <div class="carousel-badge">🍞 Baked Today</div>
                             </div>
+                            <div class="carousel-slide">
+                                <img src="https://images.unsplash.com/photo-1629282957386-1f55a760fc1b?auto=format&fit=crop&w=800&q=80" alt="Fresh Fish">
+                                <div class="carousel-overlay"></div>
+                                <div class="carousel-badge">🐟 Fresh Fish</div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="Images/kinza picture.jpg" alt="Soft Drinks">
+                                <div class="carousel-overlay"></div>
+                                <div class="carousel-badge">🥤 Soft Drinks</div>
+                            </div>
                             
                             <div class="carousel-indicators">
                                 <div class="carousel-indicator active" data-slide="0"></div>
@@ -126,6 +136,8 @@ function getDiscountPercentage($original, $current) {
                                 <div class="carousel-indicator" data-slide="2"></div>
                                 <div class="carousel-indicator" data-slide="3"></div>
                                 <div class="carousel-indicator" data-slide="4"></div>
+                                <div class="carousel-indicator" data-slide="5"></div>
+                                <div class="carousel-indicator" data-slide="6"></div>
                             </div>
                         </div>
                     </div>

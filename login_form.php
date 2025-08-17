@@ -65,6 +65,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-spinner"></div>
+    </div>
+    
+
     
 
     <nav class="navbar navbar-expand-lg navbar-light">
@@ -152,7 +158,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </nav>
     
     
-    <div class="login-card">
+    <div class="login-card" data-aos="fade-up" data-aos-duration="800" data-aos-easing="ease-in-out">
         <div class="text-center mb-4">
             <i class="fas fa-shopping-basket fa-2x mb-2 text-success"></i>
             <h2 class="login-title">GroceryNest Login</h2>
@@ -209,10 +215,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true
+        // Initialize AOS with the same settings as the home page
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true,
+                offset: 100
+            });
+            
+            // Add loading animation class to body
+            document.body.classList.add('aos-animate');
+            
+            // Page loading animation
+            window.addEventListener('load', function() {
+                const progressBar = document.getElementById('progressBar');
+                const loadingScreen = document.getElementById('loadingScreen');
+                
+                // Simulate progress (faster loading)
+                let width = 0;
+                const interval = setInterval(function() {
+                    if (width >= 100) {
+                        clearInterval(interval);
+                        loadingScreen.style.opacity = '0';
+                        setTimeout(() => {
+                            loadingScreen.style.display = 'none';
+                        }, 200);
+                    } else {
+                        width += 2; // Move faster
+                        progressBar.style.width = width + '%';
+                    }
+                }, 5);
+            });
         });
     </script>
 </body>

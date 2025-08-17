@@ -1,5 +1,6 @@
 <?php
 // filepath: c:\xampp\htdocs\grocery_website\productview.php
+session_start();
 require_once 'project_connection.php';
 
 // Get product ID from URL parameter

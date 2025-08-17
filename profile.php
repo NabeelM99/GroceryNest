@@ -91,6 +91,7 @@ $orderCount = $stmt->fetchColumn();
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
             padding: 1rem;
             margin: 40px 0 1rem 0;
+            height: 125px;
         }
         .stat-card {
             border: none;
@@ -325,11 +326,11 @@ $orderCount = $stmt->fetchColumn();
 <script>
 // Initialize AOS
 AOS.init({
-    once: false,
-    duration: 300,
-    offset: 50,
-    delay: 0,
-    easing: 'ease-out'
+    duration: 800, 
+    once: true, 
+    offset: 100, 
+    easing: 'ease-out',
+    delay: 0
 });
 
 </script>
