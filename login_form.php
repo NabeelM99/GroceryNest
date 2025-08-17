@@ -124,17 +124,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </a>
                     <?php else: ?>
                         <!-- Customer Navigation -->
-                        <a href="wishlist.php" class="btn btn-outline-warning position-relative">
+                        <a href="wishlist.php" class="btn btn-outline-danger position-relative">
                             <i class="fas fa-heart"></i>
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                0
-                            </span>
                         </a>
-                        <a href="cart.php" class="btn btn-primary position-relative">
+                        <a href="cart.php" class="btn btn-success position-relative">
                             <i class="fas fa-shopping-cart"></i>
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cartCount">
-                                0
-                            </span>
                         </a>
                         <?php if (isset($_SESSION['activeUser'])): ?>
                             <!-- Logged in user -->
@@ -146,7 +140,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </a>
                         <?php else: ?>
                             <!-- Not logged in -->
-                            <a href="login_form.php" class="btn btn-outline-primary">
+                            <a href="login_form.php" class="btn btn-outline-info">
                                 <i class="fas fa-sign-in-alt"></i>
                             </a>
                         <?php endif; ?>
