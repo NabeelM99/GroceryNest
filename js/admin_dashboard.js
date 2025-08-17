@@ -143,9 +143,49 @@ function editProduct(productData) {
     const modal = new bootstrap.Modal(document.getElementById('editProductModal'));
     modal.show();
 }
-// Delete product functionality (old logic)
+// Delete product functionality with modal confirmation
 function deleteProduct(id, name) {
-    if (confirm(`Are you sure you want to delete "${name}"? This action cannot be undone.`)) {
+    const confirmModal = document.createElement('div');
+    confirmModal.className = 'modal fade';
+    confirmModal.innerHTML = `
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-trash me-2 text-danger"></i>
+                        Delete Product
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center mb-4">
+                        <div class="mb-3">
+                            <i class="fas fa-exclamation-triangle fa-3x text-danger"></i>
+                        </div>
+                        <h4>Delete Product?</h4>
+                        <p>Are you sure you want to delete "${name}"?</p>
+                        <p class="text-danger">This action cannot be undone.</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-times me-2"></i>Cancel
+                    </button>
+                    <button type="button" class="btn btn-danger" id="confirmDeleteBtn">
+                        <i class="fas fa-trash me-2"></i>Delete Product
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(confirmModal);
+    const modal = new bootstrap.Modal(confirmModal);
+    modal.show();
+
+    // Handle delete confirmation
+    const confirmBtn = confirmModal.querySelector('#confirmDeleteBtn');
+    confirmBtn.addEventListener('click', function() {
         const form = document.createElement('form');
         form.method = 'POST';
         form.innerHTML = `
@@ -155,7 +195,12 @@ function deleteProduct(id, name) {
         `;
         document.body.appendChild(form);
         form.submit();
-    }
+    });
+
+    // Clean up modal when closed
+    confirmModal.addEventListener('hidden.bs.modal', function () {
+        confirmModal.remove();
+    });
 }
 // Delete category functionality (old logic)
 function deleteCategory(id, name) {

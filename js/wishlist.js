@@ -3,9 +3,17 @@
 document.querySelectorAll('.remove-wishlist').forEach(btn => {
     btn.addEventListener('click', function() {
         const productId = this.dataset.productId;
-        const card = this.closest('.wishlist-card');
+        const card = this.closest('.product-card');
+        const productContainer = this.closest('.col-md-2');
+        
+        if (!card) {
+            console.error('Could not find product card element');
+            showToast('error', 'Failed to remove item');
+            return;
+        }
         
         // Add loading state
+        const originalHTML = this.innerHTML;
         this.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
         this.disabled = true;
         
@@ -20,10 +28,14 @@ document.querySelectorAll('.remove-wishlist').forEach(btn => {
                 card.style.opacity = '0';
                 card.style.transform = 'scale(0.9)';
                 setTimeout(() => {
-                    card.remove();
+                    if (productContainer) {
+                        productContainer.remove();
+                    } else {
+                        card.remove();
+                    }
                     
                     // Check if wishlist is now empty
-                    const remainingCards = document.querySelectorAll('.wishlist-card');
+                    const remainingCards = document.querySelectorAll('.product-card');
                     if (remainingCards.length === 0) {
                         location.reload(); // Reload to show empty state
                     }
@@ -32,14 +44,14 @@ document.querySelectorAll('.remove-wishlist').forEach(btn => {
                 showToast('success', data.message);
             } else {
                 showToast('error', data.message || 'Failed to remove item');
-                this.innerHTML = '<i class="fas fa-times"></i>';
+                this.innerHTML = originalHTML;
                 this.disabled = false;
             }
         })
         .catch(error => {
             console.error('Error:', error);
             showToast('error', 'Failed to remove item');
-            this.innerHTML = '<i class="fas fa-times"></i>';
+            this.innerHTML = originalHTML;
             this.disabled = false;
         });
     });
@@ -115,11 +127,10 @@ function updateQuantity(productId, action) {
 
 // Initialize AOS
 AOS.init({
-    once: false,
-    duration: 300,
-    offset: 50,
-    delay: 0,
-    easing: 'ease-out'
+    duration: 800,
+    easing: 'ease-in-out',
+    once: true,
+    offset: 100
 });
 
 // Add to cart functionality

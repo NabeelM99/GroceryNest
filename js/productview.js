@@ -1,9 +1,10 @@
 // Product View JavaScript
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize AOS
     AOS.init({
         duration: 800,
-        once: true
+        easing: 'ease-in-out',
+        once: true,
+        offset: 100
     });
 
     // Quantity controls - Updated to match your HTML structure
@@ -181,9 +182,9 @@ document.addEventListener('DOMContentLoaded', function() {
             fetch(`wishlist.php?toggle=${productId}`)
                 .then(response => response.json())
                 .then(data => {
-                    // Not logged in → show same message as add-to-cart
+                    // Not logged in → show wishlist login message
                     if (data.status === 'error' && /please login/i.test(data.message || '')) {
-                        showNotification('Please login to add items to cart', 'error');
+                        showNotification('Please login to manage your wishlist', 'error');
                         button.innerHTML = originalHTML;
                         button.disabled = false;
                         return;
