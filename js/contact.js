@@ -1,9 +1,3 @@
-// Initialize AOS
-AOS.init({
-    duration: 800,
-    once: true
-});
-
 // Form validation
 const forms = document.querySelectorAll('form[novalidate]');
 forms.forEach(form => {
@@ -24,3 +18,13 @@ alerts.forEach(alert => {
         bsAlert.close();
     }, 5000);
 });
+
+// Initialize AOS
+AOS.init({
+    duration: 800, 
+    once: true, 
+    offset: 100, 
+    easing: 'ease-out',
+    delay: 0
+});
+

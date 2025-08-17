@@ -258,15 +258,5 @@ unset($_SESSION['form_errors'], $_SESSION['old_input']);
     <!-- AOS Animation Library -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="js/contact.js"></script>
-    <script>
-    // Initialize AOS
-    AOS.init({
-        duration: 800, 
-        once: true, 
-        offset: 100, 
-        easing: 'ease-out',
-        delay: 0
-    });
-    </script>
 </body>
 </html>
