@@ -156,7 +156,7 @@ function getDiscountPercentage($original, $current) {
 
 
     <!-- Featured Categories -->
-    <section class="section-lg bg-light">
+    <section id="features1"  class="section-lg bg-light">
         <div class="container">
             <div class="section-header text-center mb-5" data-aos="fade-up" data-aos-delay="100" data-aos-once="false">
                 <h2 class="section-title">Featured Categories</h2>
@@ -262,15 +262,15 @@ function getDiscountPercentage($original, $current) {
             </div>
             
             <div class="row g-4">
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
                     <div class="feature-card h-100 p-4 text-center rounded-4 shadow-sm">
                         <div class="feature-icon mb-4">
-                            <i class="fas fa-rocket"></i>
+                            <i class="fa-solid fa-desktop"></i>
                         </div>
-                        <h3 class="h5 mb-3 fw-bold">Lightning Fast Delivery</h3>
-                        <p class="text-muted">Get your groceries delivered in 30 minutes or less with our express delivery service.</p>
+                        <h3 class="h5 mb-3 fw-bold">Easy Ordering</h3>
+                        <p class="text-muted">Simple and intuitive website for seamless shopping experience anywhere, anytime.</p>
                         <div class="feature-stats mt-3">
-                            <span class="badge bg-primary">30 min</span>
+                            <span class="badge bg-primary">Website First</span>
                         </div>
                     </div>
                 </div>
@@ -295,42 +295,6 @@ function getDiscountPercentage($original, $current) {
                         <p class="text-muted">Competitive prices with daily deals, seasonal discounts, and exclusive member offers.</p>
                         <div class="feature-stats mt-3">
                             <span class="badge bg-warning">Best Deals</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
-                    <div class="feature-card h-100 p-4 text-center rounded-4 shadow-sm">
-                        <div class="feature-icon mb-4">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <h3 class="h5 mb-3 fw-bold">24/7 Support</h3>
-                        <p class="text-muted">Round-the-clock customer support to help you with any questions or concerns.</p>
-                        <div class="feature-stats mt-3">
-                            <span class="badge bg-info">Always Available</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-                    <div class="feature-card h-100 p-4 text-center rounded-4 shadow-sm">
-                        <div class="feature-icon mb-4">
-                            <i class="fas fa-leaf"></i>
-                        </div>
-                        <h3 class="h5 mb-3 fw-bold">Eco-Friendly</h3>
-                        <p class="text-muted">Sustainable packaging and eco-friendly delivery options for a greener future.</p>
-                        <div class="feature-stats mt-3">
-                            <span class="badge bg-success">Green Delivery</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
-                    <div class="feature-card h-100 p-4 text-center rounded-4 shadow-sm">
-                        <div class="feature-icon mb-4">
-                            <i class="fa-solid fa-desktop"></i>
-                        </div>
-                        <h3 class="h5 mb-3 fw-bold">Easy Ordering</h3>
-                        <p class="text-muted">Simple and intuitive website for seamless shopping experience anywhere, anytime.</p>
-                        <div class="feature-stats mt-3">
-                            <span class="badge bg-primary">Website First</span>
                         </div>
                     </div>
                 </div>
