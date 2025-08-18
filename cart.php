@@ -123,9 +123,10 @@ if (isset($_POST['update_quantity'])) {
 
         echo json_encode([
             'status' => 'success',
-            'subtotal' => number_format($item['price'] * $new_quantity, 2),
-            'tax_amount' => number_format($tax_amount, 3),
-            'total' => number_format($total, 3),
+            'item_subtotal' => number_format($item['price'] * $new_quantity, 3, '.', ''),
+            'subtotal' => number_format($subtotal, 3, '.', ''),
+            'tax_amount' => number_format($tax_amount, 3, '.', ''),
+            'total' => number_format($total, 3, '.', ''),
             'item_count' => (int)($totalResult['item_count'] ?? 0)
         ]);
     } catch (PDOException $e) {
@@ -304,7 +305,11 @@ $user_info = $stmt->fetch(PDO::FETCH_ASSOC);
                     <!-- Compact Cart Items -->
                     <div id="cart-items">
                         <?php foreach ($cartItems as $index => $item): ?>
-                            <div class="cart-item d-flex align-items-center" data-item-id="<?= $item['cart_item_id'] ?>">
+                            <div class="cart-item d-flex align-items-center" 
+                                 data-item-id="<?= $item['cart_item_id'] ?>"
+                                 data-aos="fade-up" 
+                                 data-aos-delay="<?= $index * 100 ?>"
+                                 data-aos-duration="600">
                                 <!-- Product Image -->
                                 <div class="flex-shrink-0 me-3">
                                     <div class="product-img-container">
@@ -317,14 +322,14 @@ $user_info = $stmt->fetch(PDO::FETCH_ASSOC);
                                 <!-- Product Details -->
                                 <div class="flex-grow-1 overflow-hidden pe-2">
                                     <div class="d-flex justify-content-between align-items-start">
-                                        <h5><?= htmlspecialchars($item['name']) ?></h5>
+                                        <h5 class="mb-0"><?= htmlspecialchars($item['name']) ?></h5>
                                         <div class="subtotal-text ms-2">
-                                            BHD <span class="subtotal-value"><?= number_format($item['subtotal'], 2) ?></span>
+                                            BHD <span class="subtotal-value"><?= number_format($item['subtotal'], 3) ?></span>
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-between align-items-center mt-1">
                                         <div class="product-meta">
-                                            BHD <?= number_format($item['price'], 2) ?>
+                                            BHD <?= number_format($item['price'], 3) ?>
                                         </div>
                                         <div class="d-flex align-items-center">
                                             <div class="quantity-controls me-2">

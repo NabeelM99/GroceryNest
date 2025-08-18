@@ -110,10 +110,27 @@ function updateQuantity(itemId, quantity) {
         
         if (data.status === 'success') {
             input.value = quantity;
-            cartItem.querySelector('.subtotal-value').textContent = 'BHD ' + data.subtotal;
-            document.getElementById('subtotal').textContent = 'BHD ' + data.subtotal;
-            document.getElementById('tax-amount').textContent = 'BHD ' + data.tax_amount;
-            document.getElementById('total').textContent = 'BHD ' + data.total;
+            // Format numbers to 3 decimal places and ensure no duplicate BHD
+            const formatPrice = (price) => {
+                const num = parseFloat(price);
+                return isNaN(num) ? '0.000' : num.toFixed(3);
+            };
+            
+            // Update item subtotal (using item_subtotal from server)
+            if (data.item_subtotal !== undefined) {
+                cartItem.querySelector('.subtotal-value').textContent = formatPrice(data.item_subtotal);
+            }
+            
+            // Update order summary with cart totals
+            if (data.subtotal !== undefined) {
+                document.getElementById('subtotal').textContent = formatPrice(data.subtotal);
+            }
+            if (data.tax_amount !== undefined) {
+                document.getElementById('tax-amount').textContent = formatPrice(data.tax_amount);
+            }
+            if (data.total !== undefined) {
+                document.getElementById('total').textContent = formatPrice(data.total);
+            }
             
             showToast('success', 'Cart updated successfully!');
         } else {
