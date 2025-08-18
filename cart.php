@@ -301,44 +301,50 @@ $user_info = $stmt->fetch(PDO::FETCH_ASSOC);
         <?php else: ?>
             <div class="row">
                 <div class="col-lg-8">
-                    <!-- Cart Items -->
+                    <!-- Compact Cart Items -->
                     <div id="cart-items">
                         <?php foreach ($cartItems as $index => $item): ?>
-                            <div class="cart-item p-3 mb-3" data-item-id="<?= $item['cart_item_id'] ?>" data-aos="fade-up" data-aos-delay="<?= ($index + 1) * 100 ?>">
-                                <div class="row align-items-center">
-                                    <div class="col-md-2 col-sm-3 text-center">
+                            <div class="cart-item d-flex align-items-center" data-item-id="<?= $item['cart_item_id'] ?>">
+                                <!-- Product Image -->
+                                <div class="flex-shrink-0 me-3">
+                                    <div class="product-img-container">
                                         <img src="Images/<?= htmlspecialchars($item['image']) ?>" 
                                              alt="<?= htmlspecialchars($item['name']) ?>" 
                                              class="product-img">
                                     </div>
-                                    <div class="col-md-3 col-sm-9">
-                                        <h5 class="mb-1 fw-bold"><?= htmlspecialchars($item['name']) ?></h5>
-                                    </div>
-                                    <div class="col-md-2 col-6 text-center">
-                                        <div class="quantity-controls">
-                                            <button class="quantity-btn decrease-qty" data-item-id="<?= $item['cart_item_id'] ?>">
-                                                <i class="fas fa-minus"></i>
-                                            </button>
-                                            <input type="number" class="quantity-input" 
-                                                   value="<?= $item['quantity'] ?>" min="1" max="99"
-                                                   data-item-id="<?= $item['cart_item_id'] ?>" readonly>
-                                            <button class="quantity-btn increase-qty" data-item-id="<?= $item['cart_item_id'] ?>">
-                                                <i class="fas fa-plus"></i>
-                                            </button>
+                                </div>
+                                
+                                <!-- Product Details -->
+                                <div class="flex-grow-1 overflow-hidden pe-2">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <h5><?= htmlspecialchars($item['name']) ?></h5>
+                                        <div class="subtotal-text ms-2">
+                                            BHD <span class="subtotal-value"><?= number_format($item['subtotal'], 2) ?></span>
                                         </div>
                                     </div>
-                                    <div class="col-md-3 col-6 text-center">
-                                        <div class="subtotal-text mb-1" data-subtotal="<?= $item['subtotal'] ?>">
-                                            BHD<span class="subtotal-value"><?= number_format($item['subtotal'], 2) ?></span>
+                                    <div class="d-flex justify-content-between align-items-center mt-1">
+                                        <div class="product-meta">
+                                            BHD <?= number_format($item['price'], 2) ?>
                                         </div>
-                                        <small class="text-muted">BHD <?= number_format($item['price'], 2) ?> each</small>
-                                    </div>
-                                    <div class="col-md-2 text-center">
-                                        <button class="btn remove-btn btn-sm remove-item" 
-                                                data-item-id="<?= $item['cart_item_id'] ?>"
-                                                data-product-name="<?= htmlspecialchars($item['name']) ?>">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
+                                        <div class="d-flex align-items-center">
+                                            <div class="quantity-controls me-2">
+                                                <button class="quantity-btn decrease-qty" data-item-id="<?= $item['cart_item_id'] ?>">
+                                                    <i class="fas fa-minus"></i>
+                                                </button>
+                                                <input type="number" class="quantity-input" 
+                                                       value="<?= $item['quantity'] ?>" min="1" max="99"
+                                                       data-item-id="<?= $item['cart_item_id'] ?>" readonly>
+                                                <button class="quantity-btn increase-qty" data-item-id="<?= $item['cart_item_id'] ?>">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
+                                            <button class="remove-btn remove-item" 
+                                                    data-item-id="<?= $item['cart_item_id'] ?>"
+                                                    data-product-name="<?= htmlspecialchars($item['name']) ?>"
+                                                    title="Remove item">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
