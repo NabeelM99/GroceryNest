@@ -16,7 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 
 // Redirect to login if not authenticated
 if (!isset($_SESSION['userId'])) {
-    header("Location: login_form.php");
+    header('Content-Type: application/json');
+    echo json_encode(['success' => false, 'redirect' => 'login_form.php']);
     exit;
 }
 
@@ -260,30 +261,21 @@ $orderCount = $stmt->fetchColumn();
         </div>
         <div class="card-body">
             <div class="row g-3">
-                <div class="col-md-6 col-lg-3">
-                    <a href="#" class="btn btn-outline-secondary w-100 btn-action" disabled>
+                <div class="col-md-4">
+                    <a href="editprofile.php" class="btn btn-outline-primary w-100 btn-action">
                         <i class="fas fa-user-edit me-2"></i>Edit Profile
                     </a>
                 </div>
-                <div class="col-md-6 col-lg-3">
-                    <a href="#" class="btn btn-outline-secondary w-100 btn-action" disabled>
-                        <i class="fas fa-key me-2"></i>Change Password
-                    </a>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <a href="#" class="btn btn-outline-secondary w-100 btn-action" disabled>
+                <div class="col-md-4">
+                    <a href="orders.php" class="btn btn-outline-success w-100 btn-action">
                         <i class="fas fa-history me-2"></i>Order History
                     </a>
                 </div>
-                <div class="col-md-6 col-lg-3">
+                <div class="col-md-4">
                     <button type="button" class="btn btn-outline-danger w-100 btn-action" onclick="showSignoutModal()">
                         <i class="fas fa-sign-out-alt me-2"></i>Sign Out
                     </button>
                 </div>
-            </div>
-            <div class="alert alert-info mt-3 mb-0">
-                <i class="fas fa-info-circle me-2"></i>
-                <strong>Note:</strong> Profile editing and order history features are coming soon in future updates.
             </div>
         </div>
     </div>
@@ -323,6 +315,127 @@ $orderCount = $stmt->fetchColumn();
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="js/signout.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+// Initialize AOS
+AOS.init({
+    duration: 800, 
+    once: true, 
+    offset: 100, 
+    easing: 'ease-out',
+    delay: 0
+});
+
+// Signout Modal Functions
+function showSignoutModal() {
+    const overlay = document.getElementById('signoutOverlay');
+    const modal = document.getElementById('signoutModal');
+    document.body.classList.add('modal-active');
+    
+    // Show overlay
+    overlay.style.display = 'flex';
+    
+    // Trigger animations after a small delay
+    setTimeout(() => {
+        overlay.classList.add('show');
+        setTimeout(() => {
+            modal.classList.add('show');
+        }, 100);
+    }, 10);
+    
+    // Prevent background scrolling
+    document.body.style.overflow = 'hidden';
+}
+
+function hideSignoutModal() {
+    const overlay = document.getElementById('signoutOverlay');
+    const modal = document.getElementById('signoutModal');
+    
+    // Reverse animations
+    modal.classList.remove('show');
+    setTimeout(() => {
+        overlay.classList.remove('show');
+        setTimeout(() => {
+            overlay.style.display = 'none';
+            document.body.classList.remove('modal-active');
+            document.body.style.overflow = '';
+        }, 300);
+    }, 200);
+}
+
+async function confirmSignout() {
+    const signoutBtn = document.getElementById('signoutBtn');
+    const loadingSpinner = document.getElementById('loadingSpinner');
+    const signoutIcon = document.getElementById('signoutIcon');
+    const signoutText = document.getElementById('signoutText');
+    
+    // Show loading state
+    signoutBtn.disabled = true;
+    loadingSpinner.style.display = 'inline-block';
+    signoutIcon.style.display = 'none';
+    signoutText.textContent = 'Signing out...';
+    
+    try {
+        // Send request to signout.php
+        const response = await fetch('signout.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'action=signout'
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            // Show success state
+            signoutText.textContent = 'Signed out!';
+            loadingSpinner.style.display = 'none';
+            signoutIcon.style.display = 'inline';
+            signoutIcon.className = 'fas fa-check me-2';
+            signoutBtn.classList.remove('btn-signout-confirm');
+            signoutBtn.classList.add('btn-success');
+            
+            // Redirect after short delay
+            setTimeout(() => {
+                window.location.href = result.redirect;
+            }, 1500);
+        } else {
+            throw new Error('Signout failed');
+        }
+    } catch (error) {
+        // Show error state
+        signoutText.textContent = 'Error occurred';
+        loadingSpinner.style.display = 'none';
+        signoutIcon.style.display = 'inline';
+        signoutIcon.className = 'fas fa-exclamation-triangle me-2';
+        signoutBtn.classList.remove('btn-signout-confirm');
+        signoutBtn.classList.add('btn-warning');
+        
+        // Reset after delay
+        setTimeout(() => {
+            signoutBtn.disabled = false;
+            signoutIcon.className = 'fas fa-sign-out-alt me-2';
+            signoutText.textContent = 'Yes, Sign Out';
+            signoutBtn.classList.remove('btn-warning');
+            signoutBtn.classList.add('btn-signout-confirm');
+        }, 2000);
+    }
+}
+
+// Close modal when clicking outside
+document.getElementById('signoutOverlay').addEventListener('click', function(e) {
+    if (e.target === this) {
+        hideSignoutModal();
+    }
+});
+
+// Close modal when pressing Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && document.getElementById('signoutOverlay').classList.contains('show')) {
+        hideSignoutModal();
+    }
+});
+</script>
 </body>
 </html>

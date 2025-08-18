@@ -140,6 +140,8 @@ $profilePic = $user['Profile_pic'] ?? 'default.jpg';
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Edit Profile - GroceryNest</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -288,5 +290,22 @@ $profilePic = $user['Profile_pic'] ?? 'default.jpg';
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="js/editprofile.js"></script>
+<script>
+// Initialize AOS when document is fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    AOS.init({
+        duration: 800, 
+        once: true, 
+        offset: 100, 
+        easing: 'ease-out',
+        delay: 0
+    });
+    
+    // Refresh AOS after all images are loaded
+    window.addEventListener('load', function() {
+        AOS.refresh();
+    });
+});
+</script>
 </body>
 </html>

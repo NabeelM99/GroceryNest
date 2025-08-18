@@ -66,6 +66,35 @@ $orderCount = $stmt->fetchColumn();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+    <style>
         .profile-avatar {
             width: 64px;
             height: 64px;
@@ -103,6 +132,138 @@ $orderCount = $stmt->fetchColumn();
             transform: translateY(-3px);
             box-shadow: 0 4px 16px rgba(0,0,0,0.15);
         }
+        
+        /* Signout Modal Styles */
+        .signout-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .signout-overlay.show {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 100px;
+            opacity: 1;
+        }
+        
+        .signout-modal {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            width: 90%;
+            max-width: 450px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            transform: scale(0.7) translateY(50px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .signout-modal.show {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+        
+        .warning-icon {
+            color: #ff6b6b;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .signout-title {
+            color: #333;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .user-info-modal {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #10b981;
+        }
+        
+        .btn-signout-confirm {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 12px 30px;
+            margin: 0 10px;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+        
+        .btn-signout-confirm:hover {
+            background: linear-gradient(45deg, #ee5a52, #d64545);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+            color: white;
+        }
+        
+        .btn-cancel-modal {
+            background: linear-gradient(45deg, #6c757d, #545b62);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 12px 30px;
+            margin: 0 10px;
+            box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
+        }
+        
+        .btn-cancel-modal:hover {
+            background: linear-gradient(45deg, #545b62, #3d4349);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(108, 117, 125, 0.4);
+            color: white;
+        }
+        
+        .loading-spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ffffff;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 8px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Blur effect for background content */
+        body.modal-active .container {
+            filter: blur(3px);
+            transition: filter 0.3s ease;
+        }
+        
+        body.modal-active nav {
+            filter: blur(3px);
+            transition: filter 0.3s ease;
+        }
         .btn-action {
             border-radius: 8px;
             padding: 0.75rem 1.5rem;
@@ -119,7 +280,23 @@ $orderCount = $stmt->fetchColumn();
     </style>
 </head>
 <body class="bg-light">
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-spinner"></div>
+    </div>
+    
 <?php include 'navbar.php'; ?>
+
+<script>
+// Show loading screen when navigating to profile
+window.addEventListener('load', () => {
+    const loadingScreen = document.getElementById('loadingScreen');
+    loadingScreen.style.opacity = '0';
+    setTimeout(() => {
+        loadingScreen.style.display = 'none';
+    }, 500);
+});
+</script>
 
 <div class="container py-5">
     <!-- Profile Header -->
@@ -310,13 +487,44 @@ $orderCount = $stmt->fetchColumn();
                     </a>
                 </div>
                 <div class="col-md-4">
-                    <form method="post" action="signout.php" class="d-inline w-100">
-                        <button type="submit" class="btn btn-outline-danger w-100 btn-action">
-                            <i class="fas fa-sign-out-alt me-2"></i>Sign Out
-                        </button>
-                    </form>
+                    <button type="button" class="btn btn-outline-danger w-100 btn-action" onclick="showSignoutModal()">
+                        <i class="fas fa-sign-out-alt me-2"></i>Sign Out
+                    </button>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- Signout Confirmation Modal -->
+<div class="signout-overlay" id="signoutOverlay">
+    <div class="signout-modal" id="signoutModal">
+        <div class="warning-icon">
+            <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        
+        <h2 class="signout-title">Confirm Sign Out</h2>
+        <p class="text-muted mb-4">Are you sure you want to sign out of your account? You will lose access to your cart and wishlist items.</p>
+        
+        <div class="user-info-modal">
+            <i class="fas fa-user text-success me-2"></i>
+            <strong>Signed in as:</strong> <?= htmlspecialchars($username) ?>
+        </div>
+        
+        <div class="d-flex justify-content-center flex-wrap">
+            <button type="button" class="btn btn-signout-confirm" onclick="confirmSignout()" id="signoutBtn">
+                <span class="loading-spinner" id="loadingSpinner"></span>
+                <i class="fas fa-sign-out-alt me-2" id="signoutIcon"></i>
+                <span id="signoutText">Yes, Sign Out</span>
+            </button>
+            
+            <button type="button" class="btn btn-cancel-modal" onclick="hideSignoutModal()">
+                <i class="fas fa-times me-2"></i>Cancel
+            </button>
+        </div>
+        
+        <div class="text-center mt-4">
+            <small class="text-muted">You will be redirected to the home page</small>
         </div>
     </div>
 </div>
@@ -333,6 +541,116 @@ AOS.init({
     delay: 0
 });
 
+// Signout Modal Functions
+function showSignoutModal() {
+    const overlay = document.getElementById('signoutOverlay');
+    const modal = document.getElementById('signoutModal');
+    document.body.classList.add('modal-active');
+    
+    // Show overlay
+    overlay.style.display = 'flex';
+    
+    // Trigger animations after a small delay
+    setTimeout(() => {
+        overlay.classList.add('show');
+        setTimeout(() => {
+            modal.classList.add('show');
+        }, 100);
+    }, 10);
+    
+    // Prevent background scrolling
+    document.body.style.overflow = 'hidden';
+}
+
+function hideSignoutModal() {
+    const overlay = document.getElementById('signoutOverlay');
+    const modal = document.getElementById('signoutModal');
+    
+    // Reverse animations
+    modal.classList.remove('show');
+    setTimeout(() => {
+        overlay.classList.remove('show');
+        setTimeout(() => {
+            overlay.style.display = 'none';
+            document.body.classList.remove('modal-active');
+            document.body.style.overflow = '';
+        }, 300);
+    }, 200);
+}
+
+async function confirmSignout() {
+    const signoutBtn = document.getElementById('signoutBtn');
+    const loadingSpinner = document.getElementById('loadingSpinner');
+    const signoutIcon = document.getElementById('signoutIcon');
+    const signoutText = document.getElementById('signoutText');
+    
+    // Show loading state
+    signoutBtn.disabled = true;
+    loadingSpinner.style.display = 'inline-block';
+    signoutIcon.style.display = 'none';
+    signoutText.textContent = 'Signing out...';
+    
+    try {
+        // Send request to signout.php
+        const response = await fetch('signout.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'action=signout'
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            // Show success state
+            signoutText.textContent = 'Signed out!';
+            loadingSpinner.style.display = 'none';
+            signoutIcon.style.display = 'inline';
+            signoutIcon.className = 'fas fa-check me-2';
+            signoutBtn.classList.remove('btn-signout-confirm');
+            signoutBtn.classList.add('btn-success');
+            
+            // Redirect after short delay
+            setTimeout(() => {
+                window.location.href = result.redirect;
+            }, 1500);
+        } else {
+            throw new Error('Signout failed');
+        }
+    } catch (error) {
+        // Show error state
+        signoutText.textContent = 'Error occurred';
+        loadingSpinner.style.display = 'none';
+        signoutIcon.style.display = 'inline';
+        signoutIcon.className = 'fas fa-exclamation-triangle me-2';
+        signoutBtn.classList.remove('btn-signout-confirm');
+        signoutBtn.classList.add('btn-warning');
+        
+        // Reset after delay
+        setTimeout(() => {
+            signoutBtn.disabled = false;
+            signoutIcon.className = 'fas fa-sign-out-alt me-2';
+            signoutText.textContent = 'Yes, Sign Out';
+            signoutBtn.classList.remove('btn-warning');
+            signoutBtn.classList.add('btn-signout-confirm');
+        }, 2000);
+    }
+}
+
+// Close modal when clicking outside
+document.getElementById('signoutOverlay').addEventListener('click', function(e) {
+    if (e.target === this) {
+        hideSignoutModal();
+    }
+});
+
+// Close modal when pressing Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        hideSignoutModal();
+    }
+});
 </script>
 </body>
 </html>

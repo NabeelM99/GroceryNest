@@ -68,9 +68,6 @@
                     <a href="admin_dashboard.php" class="btn btn-success">
                         <i class="fas fa-tachometer-alt me-2"></i>Admin Dashboard
                     </a>
-                    <a href="signout.php" class="btn btn-outline-danger">
-                        <i class="fas fa-sign-out-alt"></i>
-                    </a>
                 <?php else: ?>
                     <!-- Customer Navigation -->
                     <a href="wishlist.php" class="btn btn-outline-danger position-relative">
@@ -81,12 +78,48 @@
                     </a>
                     <?php if (isset($_SESSION['activeUser'])): ?>
                         <!-- Logged in user -->
-                        <a href="profile.php" class="btn btn-outline-secondary">
+                        <a href="profile.php" class="btn btn-outline-secondary" id="profileBtn">
                             <i class="fas fa-user"></i>
                         </a>
-                        <a href="signout.php" class="btn btn-outline-danger">
-                            <i class="fas fa-sign-out-alt"></i>
-                        </a>
+                        <script>
+                        // Add click event to profile button to show loading screen
+                        document.getElementById('profileBtn').addEventListener('click', function(e) {
+                            // Only show loading screen if not already on profile page
+                            if (!window.location.href.includes('profile.php')) {
+                                const loadingScreen = document.createElement('div');
+                                loadingScreen.className = 'loading-screen';
+                                loadingScreen.style.position = 'fixed';
+                                loadingScreen.style.top = '0';
+                                loadingScreen.style.left = '0';
+                                loadingScreen.style.width = '100%';
+                                loadingScreen.style.height = '100%';
+                                loadingScreen.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+                                loadingScreen.style.display = 'flex';
+                                loadingScreen.style.alignItems = 'center';
+                                loadingScreen.style.justifyContent = 'center';
+                                loadingScreen.style.zIndex = '9999';
+                                loadingScreen.innerHTML = '<div class="loading-spinner"></div>';
+                                document.body.appendChild(loadingScreen);
+                                
+                                // Add styles for the loading spinner
+                                const style = document.createElement('style');
+                                style.textContent = `
+                                    @keyframes spin {
+                                        to { transform: rotate(360deg); }
+                                    }
+                                    .loading-spinner {
+                                        width: 50px;
+                                        height: 50px;
+                                        border: 5px solid rgba(255, 255, 255, 0.3);
+                                        border-radius: 50%;
+                                        border-top-color: #fff;
+                                        animation: spin 1s ease-in-out infinite;
+                                    }
+                                `;
+                                document.head.appendChild(style);
+                            }
+                        });
+                        </script>
                     <?php else: ?>
                         <!-- Not logged in -->
                         <a href="login_form.php" class="btn btn-outline-info">
