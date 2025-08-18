@@ -107,18 +107,26 @@ if (isset($_POST['update_quantity'])) {
 
         // Calculate new cart total
         $user_id = $_SESSION['userId'];
-        $totalStmt = $conn->prepare("SELECT SUM(p.price * ci.quantity) as total
+        $totalStmt = $conn->prepare("SELECT SUM(p.price * ci.quantity) as subtotal, COUNT(*) as item_count
                                    FROM cart_items ci
                                    JOIN cart c ON ci.cart_id = c.id
                                    JOIN products p ON ci.product_id = p.id
                                    WHERE c.user_id = ?");
         $totalStmt->execute([$user_id]);
         $totalResult = $totalStmt->fetch();
+        
+        // Calculate tax (10%)
+        $subtotal = $totalResult['subtotal'] ?? 0;
+        $tax_rate = 0.10; // 10%
+        $tax_amount = $subtotal * $tax_rate;
+        $total = $subtotal + $tax_amount;
 
         echo json_encode([
             'status' => 'success',
-            'subtotal' => number_format($item['subtotal'], 2),
-            'total' => number_format($totalResult['total'], 2)
+            'subtotal' => number_format($item['price'] * $new_quantity, 2),
+            'tax_amount' => number_format($tax_amount, 3),
+            'total' => number_format($total, 3),
+            'item_count' => (int)($totalResult['item_count'] ?? 0)
         ]);
     } catch (PDOException $e) {
         echo json_encode(['status' => 'error', 'message' => 'Database error']);
@@ -144,18 +152,26 @@ if (isset($_POST['remove_item'])) {
 
         // Calculate new cart total
         $user_id = $_SESSION['userId'];
-        $totalStmt = $conn->prepare("SELECT SUM(p.price * ci.quantity) as total, COUNT(*) as item_count
+        $totalStmt = $conn->prepare("SELECT SUM(p.price * ci.quantity) as subtotal, COUNT(*) as item_count
                                    FROM cart_items ci
                                    JOIN cart c ON ci.cart_id = c.id
                                    JOIN products p ON ci.product_id = p.id
                                    WHERE c.user_id = ?");
         $totalStmt->execute([$user_id]);
         $totalResult = $totalStmt->fetch();
+        
+        // Calculate tax (10%)
+        $subtotal = $totalResult['subtotal'] ?? 0;
+        $tax_rate = 0.10; // 10%
+        $tax_amount = $subtotal * $tax_rate;
+        $total = $subtotal + $tax_amount;
 
         echo json_encode([
             'status' => 'success',
             'message' => 'Item removed from cart',
-            'total' => number_format($totalResult['total'] ?? 0, 2),
+            'subtotal' => number_format($subtotal, 3),
+            'tax_amount' => number_format($tax_amount, 3),
+            'total' => number_format($total, 3),
             'item_count' => (int)($totalResult['item_count'] ?? 0)
         ]);
     } catch (PDOException $e) {
@@ -212,10 +228,15 @@ $stmt->execute([$user_id]);
 $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Calculate totals
-$total = 0;
+$subtotal = 0;
 foreach ($cartItems as $item) {
-    $total += $item['subtotal'];
+    $subtotal += $item['subtotal'];
 }
+
+// Calculate tax (10%)
+$tax_rate = 0.10; // 10%
+$tax_amount = $subtotal * $tax_rate;
+$total = $subtotal + $tax_amount;
 
 // Get user info for header
 $stmt = $conn->prepare("SELECT u.Username, c.Fname, c.Lname FROM user u LEFT JOIN customer c ON u.id = c.UID WHERE u.id = ?");
@@ -334,20 +355,20 @@ $user_info = $stmt->fetch(PDO::FETCH_ASSOC);
                         <div class="card-body">
                             <div class="d-flex justify-content-between mb-3">
                                 <span>Subtotal:</span>
-                                <span id="subtotal">BHD<?= number_format($total, 2) ?></span>
+                                <span id="subtotal">BHD <?= number_format($subtotal, 3) ?></span>
                             </div>
                             <div class="d-flex justify-content-between mb-3">
                                 <span>Shipping:</span>
                                 <span class="text-success"><i class="fas fa-check me-1"></i>Free</span>
                             </div>
                             <div class="d-flex justify-content-between mb-3">
-                                <span>Tax:</span>
-                                <span>BHD 0.00</span>
+                                <span>Tax (10%):</span>
+                                <span id="tax-amount">BHD <?= number_format($tax_amount, 3) ?></span>
                             </div>
                             <hr class="my-3" style="border-color: rgba(255,255,255,0.3);">
                             <div class="d-flex justify-content-between mb-4">
                                 <strong style="font-size: 1.2rem;">Total:</strong>
-                                <strong style="font-size: 1.2rem;" id="total">BHD <?= number_format($total, 2) ?></strong>
+                                <strong style="font-size: 1.2rem;" id="total">BHD <?= number_format($total, 3) ?></strong>
                             </div>
                             <a href="checkout.php" class="btn checkout-btn w-100" <?= empty($cartItems) ? 'style="pointer-events: none; opacity: 0.6;"' : '' ?>>
                                 <i class="fas fa-credit-card me-2"></i>Proceed to Checkout

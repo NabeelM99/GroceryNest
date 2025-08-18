@@ -110,9 +110,10 @@ function updateQuantity(itemId, quantity) {
         
         if (data.status === 'success') {
             input.value = quantity;
-            cartItem.querySelector('.subtotal-value').textContent = data.subtotal;
-            document.getElementById('subtotal').textContent = '$' + data.total;
-            document.getElementById('total').textContent = '$' + data.total;
+            cartItem.querySelector('.subtotal-value').textContent = 'BHD ' + data.subtotal;
+            document.getElementById('subtotal').textContent = 'BHD ' + data.subtotal;
+            document.getElementById('tax-amount').textContent = 'BHD ' + data.tax_amount;
+            document.getElementById('total').textContent = 'BHD ' + data.total;
             
             showToast('success', 'Cart updated successfully!');
         } else {
@@ -155,8 +156,9 @@ function removeItem(itemId) {
                 cartItem.remove();
                 
                 // Update totals
-                document.getElementById('subtotal').textContent = '$' + data.total;
-                document.getElementById('total').textContent = '$' + data.total;
+                document.getElementById('subtotal').textContent = 'BHD ' + data.subtotal;
+                document.getElementById('tax-amount').textContent = 'BHD ' + data.tax_amount;
+                document.getElementById('total').textContent = 'BHD ' + data.total;
                 document.getElementById('item-count').textContent = data.item_count + ' items';
                 
                 // Check if cart is empty
