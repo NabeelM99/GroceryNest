@@ -19,8 +19,12 @@ SET time_zone = "+00:00";
 
 --
 -- Database: `grocery_db`
+-- Admin account: admin@freshnest.com
+-- Admin password: Admin123
 --
-
+--User1 account: steve@gmail.com
+--User1 password: Steve123
+--
 -- --------------------------------------------------------
 
 --
