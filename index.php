@@ -125,7 +125,7 @@ function getDiscountPercentage($original, $current) {
                                 <div class="carousel-badge">🐟 Fresh Fish</div>
                             </div>
                             <div class="carousel-slide">
-                                <img src="Images/kinza picture.jpg" alt="Soft Drinks">
+                                <img src="Images/kinza_picture.jpg" alt="Soft Drinks">
                                 <div class="carousel-overlay"></div>
                                 <div class="carousel-badge">🥤 Soft Drinks</div>
                             </div>
@@ -177,21 +177,30 @@ function getDiscountPercentage($original, $current) {
             <div class="carousel-wrapper" style="overflow: hidden; position: relative;" data-aos="fade-up" data-aos-delay="100">
                 <div class="carousel-container d-flex flex-nowrap" id="categoryCarousel" style="gap: 20px; transition: transform 0.5s ease-in-out;">
                     <!-- Original cards -->
-                    <a href="products.php?category=produce" class="category-card text-decoration-none" style="min-width: 200px; flex-shrink: 0;">
+                    <a href="products.php?category=Fruits" class="category-card text-decoration-none" style="min-width: 200px; flex-shrink: 0;">
                         <div class="card-content text-center p-4 rounded-3 bg-white h-100">
-                            <img src="https://images.unsplash.com/photo-1610348725531-843dff563e2c?auto=format&fit=crop&w=300&q=80" 
-                                 alt="Fruits & Vegetables" 
+                            <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=300&q=80" 
+                                 alt="Fruits" 
                                  class="category-image" />
-                            <h5 class="mb-0">Fruits & Vegetables</h5>
+                            <h5 class="mb-0">Fruits</h5>
+                        </div>
+                    </a>
+
+                    <a href="products.php?category=Vegetables" class="category-card text-decoration-none" style="min-width: 200px; flex-shrink: 0;">
+                        <div class="card-content text-center p-4 rounded-3 bg-white h-100">
+                            <img src="https://images.unsplash.com/photo-1598030304671-5aa1d6f21128?auto=format&fit=crop&w=300&q=80" 
+                                 alt="Vegetables" 
+                                 class="category-image" />
+                            <h5 class="mb-0">Vegetables</h5>
                         </div>
                     </a>
                     
                     <a href="products.php?category=dairy" class="category-card text-decoration-none" style="min-width: 200px; flex-shrink: 0;">
                         <div class="card-content text-center p-4 rounded-3 bg-white h-100">
                             <img src="https://images.unsplash.com/photo-1563636619-e9143da7973b?auto=format&fit=crop&w=300&q=80" 
-                                 alt="Dairy, Bread & Eggs" 
+                                 alt="Dairy & Eggs" 
                                  class="category-image" />
-                            <h5 class="mb-0">Dairy, Bread & Eggs</h5>
+                            <h5 class="mb-0">Dairy & Eggs</h5>
                         </div>
                     </a>
                     
@@ -213,12 +222,21 @@ function getDiscountPercentage($original, $current) {
                         </div>
                     </a>
                     
-                    <a href="products.php?category=beverages" class="category-card text-decoration-none" style="min-width: 200px; flex-shrink: 0;">
+                    <a href="products.php?category=Hot Drinks" class="category-card text-decoration-none" style="min-width: 200px; flex-shrink: 0;">
                         <div class="card-content text-center p-4 rounded-3 bg-white h-100">
                             <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=300&q=80" 
-                                 alt="Tea, Coffee & Drinks" 
+                                 alt="Hot Drinks" 
                                  class="category-image" />
-                            <h5 class="mb-0">Tea, Coffee & Drinks</h5>
+                            <h5 class="mb-0">Hot Drinks</h5>
+                        </div>
+                    </a>
+
+                    <a href="products.php?category=Beverages" class="category-card text-decoration-none" style="min-width: 200px; flex-shrink: 0;">
+                        <div class="card-content text-center p-4 rounded-3 bg-white h-100">
+                            <img src="Images/kinza picture1.jpg" 
+                                 alt="Beverages" 
+                                 class="category-image" />
+                            <h5 class="mb-0">Beverages</h5>
                         </div>
                     </a>
                     
@@ -231,12 +249,21 @@ function getDiscountPercentage($original, $current) {
                         </div>
                     </a>
 
-                    <a href="products.php?category=meat" class="category-card text-decoration-none" style="min-width: 200px; flex-shrink: 0;">
+                    <a href="products.php?category=Meat" class="category-card text-decoration-none" style="min-width: 200px; flex-shrink: 0;">
                         <div class="card-content text-center p-4 rounded-3 bg-white h-100">
                             <img src="https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=300&q=80" 
-                                 alt="Chicken, Meat & Fish" 
+                                 alt="Chicken & Meat" 
                                  class="category-image" />
-                            <h5 class="mb-0">Chicken, Meat & Fish</h5>
+                            <h5 class="mb-0">Chicken & Meat</h5>
+                        </div>
+                    </a>
+
+                    <a href="products.php?category=Fish" class="category-card text-decoration-none" style="min-width: 200px; flex-shrink: 0;">
+                        <div class="card-content text-center p-4 rounded-3 bg-white h-100">
+                            <img src="https://plus.unsplash.com/premium_photo-1693221705305-6eff5fa8e483?auto=format&fit=crop&w=300&q=80" 
+                                 alt="Fish" 
+                                 class="category-image" />
+                            <h5 class="mb-0">Fish</h5>
                         </div>
                     </a>
                 </div>
